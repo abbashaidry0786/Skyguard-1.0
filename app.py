@@ -47,10 +47,9 @@ except Exception as e:
     print("✓ Using default feature info")
 
 # Load sample data for visualization
-DATA_PATH = 'data.csv'
-if os.path.exists(DATA_PATH):
-    try:
-        df = pd.read_csv(DATA_PATH, encoding='latin1')
+url = "https://drive.google.com/uc?id=1aqu7GIBTi-eHhMG2BUmteZtTNLfXfnDB"
+   try:
+       df = pd.read_csv(url, low_memory=False)
         # Handle missing values
         for col in ['so2', 'no2', 'rspm', 'spm', 'pm2_5']:
             if col in df.columns:
@@ -63,11 +62,8 @@ if os.path.exists(DATA_PATH):
     except Exception as e:
         print(f"Error loading data: {e}")
         df = None
-else:
-    print(f"Warning: {DATA_PATH} not found. Visualization features will use sample data.")
-    df = None
 
-@app.route('/')
+    
 def index():
     return render_template('index.html')
 
