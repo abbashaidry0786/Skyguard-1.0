@@ -49,7 +49,7 @@ except Exception as e:
 url = "https://drive.google.com/uc?id=1aqu7GIBTi-eHhMG2BUmteZtTNLfXfnDB"
 
 try:
-    df = pd.read_csv(url, low_memory=False)
+    df = pd.read_csv(url, low_memory=False, encoding='latin1', on_bad_lines='skip')
 
     for col in ['so2', 'no2', 'rspm', 'spm', 'pm2_5']:
         if col in df.columns:
